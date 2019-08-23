@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  postgres:
+    image: 'postgres:10-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_PASSWORD=postgres
+  front:
+    build:
+      context: front
+    depends_on:
+      - 'back'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './front:/app'
+  back:
+    build:
+      context: back
+    ports:
+      - '8080:8080'
+    volumes:
+      - './back:/app'
+    depends_on:
+      - 'postgres'
+    links:
+      - 'postgres'

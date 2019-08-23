@@ -1,0 +1,25 @@
+{
+  "name": "orbita-challenge-back",
+  "version": "0.0.1",
+  "description": "Just a ",
+  "repository": "git@github.com:giovanecosta/orbita-challenge.git",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts",
+    "tsc": "tsc",
+    "sequelize": "sequelize",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "giovanecosta",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^5.16.0",
+    "sequelize-cli": "^5.5.0",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0"
+  }
+}
