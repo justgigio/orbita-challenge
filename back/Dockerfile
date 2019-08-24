@@ -1,5 +1,8 @@
 FROM node:10-alpine
 
+RUN apk --no-cache add postgresql-dev
+#RUN apk --no-cache add make python gcc postgresql-dev g++
+
 WORKDIR /app
 
 COPY package*.json ./

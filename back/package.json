@@ -1,9 +1,9 @@
 {
   "name": "orbita-challenge-back",
   "version": "0.0.1",
-  "description": "Just a ",
+  "description": "A Project to show my Dev skills and be hired by Orbita",
   "repository": "git@github.com:giovanecosta/orbita-challenge.git",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts",
     "tsc": "tsc",
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "pg": "^7.12.1",
     "sequelize": "^5.16.0",
     "sequelize-cli": "^5.5.0",
     "typescript": "^3.5.3"

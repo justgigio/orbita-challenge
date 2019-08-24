@@ -4,23 +4,20 @@
     "password": "postgres",
     "database": "orbita_challenge_development",
     "host": "postgres",
-    "dialect": "postgresql",
-    "operatorsAliases": false
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "postgres",
     "database": "orbita_challenge_test",
     "host": "postgres",
-    "dialect": "postgresql",
-    "operatorsAliases": false
+    "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "postgres",
     "database": "orbita_challenge_production",
     "host": "postgres",
-    "dialect": "postgresql",
-    "operatorsAliases": false
+    "dialect": "postgres"
   }
 }
