@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     zipCode:  DataTypes.STRING,
     state:  DataTypes.STRING,
     cost:  DataTypes.FLOAT,
+  },
+  {
+    tableName: 'solar_panels'
   });
 
   return SolarPanel;
