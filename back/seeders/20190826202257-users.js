@@ -7,7 +7,7 @@ module.exports = {
     return queryInterface.bulkInsert('users', [
       {
         name: 'Admin',
-        email: 'admin@orbita.co',
+        email: 'admin@orbita.cc',
         password: 'admin',
         state: '*',
         role: 'admin',
@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         name: 'First User',
-        email: 'first@orbita.co',
+        email: 'first@orbita.cc',
         password: 'abc123',
         state: 'CA',
         createdAt: timestamp,
@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         name: 'Second User',
-        email: 'second@orbita.co',
+        email: 'second@orbita.cc',
         password: 'def456',
         state: 'NY',
         createdAt: timestamp,

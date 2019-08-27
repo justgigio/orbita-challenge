@@ -1,10 +1,18 @@
-var express = require('express');
-var app = express();
+import express from 'express';
+import router from '../config/router';
 
-app.get('/', (_, res) => {
-  res.send('Hello World!');
-});
+const PORT = 8080;
 
-app.listen(8080, () => {
-  console.log('Example app listening on port 8080!');
-});
+const app = express();
+
+app.use(express.json());
+
+app.use('/', router);
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+  });
+}
+
+export default app;

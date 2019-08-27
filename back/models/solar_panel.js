@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const SolarPanel = sequelize.define('solar_panels', {
+  const SolarPanel = sequelize.define('SolarPanel', {
     dataProvider:  DataTypes.STRING,
     installationDate:  DataTypes.DATE,
     systemSize:  DataTypes.FLOAT,
