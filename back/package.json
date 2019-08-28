@@ -8,19 +8,40 @@
     "start": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts",
     "tsc": "tsc",
     "sequelize": "sequelize",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-db-setup": "NODE_ENV=test sequelize -- db:create && NODE_ENV=test sequelize -- db:migrate",
+    "test-db-setdown": "NODE_ENV=test sequelize -- db:drop",
+    "test": "npm run test-db-setdown && npm run test-db-setup && jest --no-cache"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   },
   "author": "giovanecosta",
   "license": "ISC",
   "dependencies": {
+    "@types/supertest": "^2.0.8",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.12.1",
     "sequelize": "^5.16.0",
     "sequelize-cli": "^5.5.0",
+    "supertest": "^4.0.2",
     "typescript": "^3.5.3"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/sequelize": "^4.28.4",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.1",
+    "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0"
   }
 }
