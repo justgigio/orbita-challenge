@@ -38,9 +38,9 @@ docker-compose up
 ```
 And in another terminal window:
 ```
-docker-compose exec back phx.server
+docker-compose exec back npm run start
 ```
-App will be running on http://localhost:4000
+App will be running on http://localhost:8080
 
 ## Run Tests
 ```
