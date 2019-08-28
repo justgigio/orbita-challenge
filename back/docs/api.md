@@ -1,10 +1,11 @@
 # API Documentation
 
   * [API /auth](#auth)
-  * [API /api/solar_panels](#api-solar-panels
+  * [API /api/solar_panels](#api-solar-panels)
+  * [API /users](#users)
 
 ## API /auth
-### <a id=auth-index></a>index
+### <a id=auth></a>index
 #### Get a JSON Web Token for the currrent User
 ##### Request
 * __Method:__ GET
@@ -35,8 +36,92 @@ cache-control: max-age=0, private, must-revalidate
 }
 ```
 
+## API /users
+### <a id=users></a>index
+#### Get current logged User
+##### Request
+* __Method:__ GET
+* __Path:__ /users
+* __Request headers:__
+```
+accept: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTU2Njg5NDA4NiwiZXhwIjoxNTY2OTgwNDg2fQ.EKvNMvYs-4BbhBi15u5oqnCHWZoYUkPozX7XLZPEWkE
+```
+##### Response
+* __Status__: 200
+* __Response headers:__
+```
+content-type: application/json; charset=utf-8
+cache-control: max-age=0, private, must-revalidate
+```
+* __Response body:__
+```json
+{
+  "user": {
+    "name": "Dummy User",
+    "email": "dummy@user.com",
+    "state": "AK"
+  }
+}
+```
+#### Update current logged User name and/or email
+##### Request
+* __Method:__ POST
+* __Path:__ /users
+* __Request headers:__
+```
+accept: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTU2Njg5NDA4NiwiZXhwIjoxNTY2OTgwNDg2fQ.EKvNMvYs-4BbhBi15u5oqnCHWZoYUkPozX7XLZPEWkE
+```
+* __Request body:__
+```json
+{
+  "name": "Dummy Updated",
+  "email": "dummy@email.com"
+}
+```
+##### Response
+* __Status__: 200
+* __Response headers:__
+```
+content-type: application/json; charset=utf-8
+cache-control: max-age=0, private, must-revalidate
+```
+* __Response body:__
+```json
+{
+  "user": {
+    "name": "Dummy Updated",
+    "email": "dummy@email.com",
+    "state": "AK"
+  }
+}
+```
+#### Delete current logged User
+##### Request
+* __Method:__ DELETE
+* __Path:__ /users
+* __Request headers:__
+```
+accept: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTU2Njg5NDA4NiwiZXhwIjoxNTY2OTgwNDg2fQ.EKvNMvYs-4BbhBi15u5oqnCHWZoYUkPozX7XLZPEWkE
+```
+##### Response
+* __Status__: 200
+* __Response headers:__
+```
+content-type: application/json; charset=utf-8
+cache-control: max-age=0, private, must-revalidate
+```
+* __Response body:__
+```json
+{
+  "success": true
+}
+```
+
 ## API /api/solar_panels
-### <a id=api-solar-panels-index></a>index
+### <a id=api-solar-panels></a>index
 #### List all Solar Panels for the logged User (limit: 20, filtered by User state)
 ##### Request
 * __Method:__ GET
@@ -44,6 +129,7 @@ cache-control: max-age=0, private, must-revalidate
 * __Request headers:__
 ```
 accept: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTU2Njg5NDA4NiwiZXhwIjoxNTY2OTgwNDg2fQ.EKvNMvYs-4BbhBi15u5oqnCHWZoYUkPozX7XLZPEWkE
 ```
 
 ##### Response
@@ -52,7 +138,6 @@ accept: application/json
 ```
 content-type: application/json; charset=utf-8
 cache-control: max-age=0, private, must-revalidate
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTU2Njg5NDA4NiwiZXhwIjoxNTY2OTgwNDg2fQ.EKvNMvYs-4BbhBi15u5oqnCHWZoYUkPozX7XLZPEWkE
 ```
 * __Response body:__
 ```json
