@@ -26,7 +26,7 @@ describe('[GET] /api/solar_panels', () => {
     const res = await req(app).get("/api/solar_panels").set('x-access-token', token);
 
     expect(res.status).toBe(200);
-    expect(res.body.solar_panels.length).toBe(20);
+    expect(res.body.solarPanels.length).toBe(20);
   });
 
   it('return a list filtered only by state', async () => {
@@ -36,7 +36,7 @@ describe('[GET] /api/solar_panels', () => {
     const res = await req(app).get("/api/solar_panels").set('x-access-token', token);
 
     expect(res.status).toBe(200);
-    expect(res.body.solar_panels.length).toBe(7);
+    expect(res.body.solarPanels.length).toBe(7);
   });
 
   it('return nothing for no state user', async () => {
@@ -46,7 +46,92 @@ describe('[GET] /api/solar_panels', () => {
     const res = await req(app).get("/api/solar_panels").set('x-access-token', token);
 
     expect(res.status).toBe(200);
-    expect(res.body.solar_panels.length).toBe(0);
+    expect(res.body.solarPanels.length).toBe(0);
+  });
+
+  it('filter by zipcode', async () => {
+
+    let token = await auth('causer@orbita.cc', '123abc');
+
+    const res = await req(app).get("/api/solar_panels")
+      .set('x-access-token', token)
+      .send({zipCode: '92024'});
+
+
+    expect(res.status).toBe(200);
+    expect(res.body.solarPanels.length).toBe(2);
+    expect(res.body.solarPanels[0].zipCode).toBe('92024');
+  });
+
+  it('filter by zipcode from another state', async () => {
+
+    let token = await auth('nyuser@orbita.cc', '456def');
+
+    const res = await req(app).get("/api/solar_panels")
+      .set('x-access-token', token)
+      .send({zipCode: '92024'});
+
+
+    expect(res.status).toBe(200);
+    expect(res.body.solarPanels.length).toBe(0);
+  });
+
+  it('filter by dataProvider', async () => {
+
+    let token = await auth('nyuser@orbita.cc', '456def');
+
+    const res = await req(app).get("/api/solar_panels")
+      .set('x-access-token', token)
+      .send({dataProvider: 'Solar Initiative'});
+
+
+    expect(res.status).toBe(200);
+    expect(res.body.solarPanels.length).toBe(1);
+    expect(res.body.solarPanels[0].dataProvider).toMatch('Solar Initiative');
+  });
+
+  it('filter by cost', async () => {
+
+    let token = await auth('nyuser@orbita.cc', '456def');
+
+    const res = await req(app).get("/api/solar_panels")
+      .set('x-access-token', token)
+      .send({minCost: 400, maxCost: 800});
+
+
+    expect(res.status).toBe(200);
+    expect(res.body.solarPanels.length).toBe(5);
+
+    let minCost = 801;
+    let maxCost = 399;
+
+    res.body.solarPanels.forEach(solarPanel => {
+      if (solarPanel.cost < minCost) {
+        minCost = solarPanel.cost;
+      }
+
+      if (solarPanel.cost > maxCost) {
+        maxCost = solarPanel.cost;
+      }
+    });
+
+    expect(minCost).toBeGreaterThan(399);
+    expect(maxCost).toBeLessThan(801);
+  });
+
+  it('filter by installation date', async () => {
+    let token = await auth('causer@orbita.cc', '123abc');
+
+    let minInstallationDate = new Date(2016, 1, 1).toISOString();
+    let maxInstallationDate = new Date(2016, 2, 28).toISOString();
+
+    const res = await req(app).get("/api/solar_panels")
+      .set('x-access-token', token)
+      .send({minInstallationDate, maxInstallationDate});
+
+
+    expect(res.status).toBe(200);
+    expect(res.body.solarPanels.length).toBe(2);
   });
 
 });
